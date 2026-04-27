@@ -56,3 +56,9 @@ def calcula_pontos_sequencia_baixa(lista_inteiros):
     if (3 in lista_inteiros and 4 in lista_inteiros and 5 in lista_inteiros and 6 in lista_inteiros):
         return 15   
     return 0   
+def calcula_pontos_sequencia_alta(lista):
+    if (1 in lista and 2 in lista and 3 in lista and 4 in lista and 5 in lista):
+        return 30
+    if (2 in lista and 3 in lista and 4 in lista and 5 in lista and 6 in lista):
+        return 30
+    return 0
