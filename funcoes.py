@@ -42,4 +42,10 @@ def calcula_pontos_regra_simples(lista_numeros):
             
     return dic
 
+def calcula_pontos_soma(lista_inteiros):
+    resposta = 0
+    for i in range(len(lista_inteiros)):
+        resposta += lista_inteiros[i]
+    return resposta
+
         
