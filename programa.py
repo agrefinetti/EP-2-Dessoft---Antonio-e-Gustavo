@@ -23,7 +23,6 @@ def jogo():
         dados_rolados = rolar_dados(5)
         dados_guardados = []
         rerrolagens = 0
-
         jogada_feita = False
 
         while not jogada_feita:
@@ -50,8 +49,7 @@ def jogo():
 
             elif opcao == "3":
                 if rerrolagens < 2:
-                    novos = rolar_dados(len(dados_rolados))
-                    dados_rolados = novos
+                    dados_rolados = rolar_dados(len(dados_rolados))
                     rerrolagens += 1
                 else:
                     print("Você já usou todas as rerrolagens.")
@@ -60,33 +58,32 @@ def jogo():
                 imprime_cartela(cartela)
 
             elif opcao == "0":
-                print("Digite a combinação desejada:")
-                categoria = input()
 
-                
-                if categoria.isdigit():
-                    categoria_int = int(categoria)
+                valido = False
 
-                    if categoria_int not in cartela['regra_simples']:
-                        print("Combinação inválida. Tente novamente.")
-                        continue
+                while not valido:
+                    print("Digite a combinação desejada:")
+                    categoria = input()
 
-                    if cartela['regra_simples'][categoria_int] != -1:
-                        print("Essa combinação já foi utilizada.")
-                        continue
+                    if categoria.isdigit():
+                        categoria_int = int(categoria)
 
-                else:
-                    if categoria not in cartela['regra_avancada']:
-                        print("Combinação inválida. Tente novamente.")
-                        continue
+                        if categoria_int not in cartela['regra_simples']:
+                            print("Combinação inválida. Tente novamente.")
+                        elif cartela['regra_simples'][categoria_int] != -1:
+                            print("Essa combinação já foi utilizada.")
+                        else:
+                            valido = True
 
-                    if cartela['regra_avancada'][categoria] != -1:
-                        print("Essa combinação já foi utilizada.")
-                        continue
+                    else:
+                        if categoria not in cartela['regra_avancada']:
+                            print("Combinação inválida. Tente novamente.")
+                        elif cartela['regra_avancada'][categoria] != -1:
+                            print("Essa combinação já foi utilizada.")
+                        else:
+                            valido = True
 
-                
                 dados = dados_rolados + dados_guardados
-
                 cartela = faz_jogada(dados, categoria, cartela)
 
                 jogada_feita = True
@@ -96,7 +93,6 @@ def jogo():
 
         rodada += 1
 
-    
     total = 0
 
     for valor in cartela['regra_simples'].values():
@@ -105,7 +101,6 @@ def jogo():
     for valor in cartela['regra_avancada'].values():
         total += valor
 
-    
     soma_simples = 0
     for valor in cartela['regra_simples'].values():
         soma_simples += valor
@@ -116,4 +111,5 @@ def jogo():
     imprime_cartela(cartela)
     print(f"Pontuação total: {total}")
 
-jogo()
+
+    jogo()
